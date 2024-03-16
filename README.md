@@ -2,6 +2,11 @@
 
 A new Flutter project.
 
+## 版本
+
+Flutter 3.19.2
+Gradle 7.5
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
