@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'http/JsonParsingPage.dart';
+import 'http/future_study.dart';
 import 'http/http_study.dart';
+import 'http/shared_preferences_study.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +22,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: const HttpStudy(),
+      // home: const HttpStudy(),
+      // home: const JsonParsingPage(),
+      // home: const FutureStudy(),
+      home: const SPCounterWidget(),
     );
   }
 }
