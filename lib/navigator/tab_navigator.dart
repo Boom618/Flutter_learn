@@ -3,6 +3,9 @@ import 'package:started_flutter/pages/home_page.dart';
 import 'package:started_flutter/pages/my_page.dart';
 import 'package:started_flutter/pages/search_page.dart';
 
+import '../list/expansion_tile_page.dart';
+import '../list/gridview_page.dart';
+import '../list/refresh_loadmore_page.dart';
 import '../pages/travel_page.dart';
 import '../util/navigator_util.dart';
 
@@ -29,7 +32,10 @@ class _TabNavigatorState extends State<TabNavigator> {
         controller: _controller,
         // physics: const NeverScrollableScrollPhysics(),
         children: const [
-          HomePage(),
+          // HomePage(),
+          // ExpansionTilePage(),
+          // GridViewPage(),
+          RefreshLoadMorePage(),
           SearchPage(),
           TravelPage(),
           MyPage()
@@ -48,7 +54,8 @@ class _TabNavigatorState extends State<TabNavigator> {
             _currentIndex = index;
           });
         },
-        type: BottomNavigationBarType.fixed,// 底部样式
+        type: BottomNavigationBarType.fixed,
+        // 底部样式
         items: [
           _bottomItem('首页', Icons.home),
           _bottomItem('搜索', Icons.search),
