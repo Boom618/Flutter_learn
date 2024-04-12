@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hi_cache/flutter_hi_cache.dart';
+import 'package:started_flutter/pages/home_page.dart';
 
+import 'dao/login_dao.dart';
 import 'http/JsonParsingPage.dart';
 import 'http/future_study.dart';
 import 'http/http_study.dart';
@@ -27,7 +30,27 @@ class MyApp extends StatelessWidget {
       // home: const JsonParsingPage(),
       // home: const FutureStudy(),
       // home: const SPCounterWidget(),
-      home: const LoginPage(),
+      // home: const LoginPage(),
+      home: FutureBuilder<dynamic>(
+        future: HiCache.preInit(),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+          // ScreenHelper.init(context);// 初始化屏幕适配工具
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (LoginDao.getBoardingPass() == null) {
+              return const LoginPage();
+            } else {
+              //return const TabNavigator();
+              return const HomePage();
+            }
+          } else {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        }
+      ),
     );
   }
 }

@@ -28,3 +28,9 @@ samples, guidance on mobile development, and a full API reference.
 绘制和裁切 Widget
 图片和资产 Widget
 样式 Widget
+
+## 插件
+
+- url_launcher： Flutter 与 H5 交互插件
+- flutter_hi_cache ： 缓存插件
+- 屏幕适配：逻辑像素 = 物理像素 px / 设备像素比 dpr(devicePixelRatio)

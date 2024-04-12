@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class InputWidget extends StatelessWidget {
   final String hint;
 
-  // 回调函数，给使用者
+  // 回调函数，给使用者 ，回传值 ，与  VoidCallback 不同
   final ValueChanged<String> onChanged;
 
   // 是否要隐藏输入内容
