@@ -32,4 +32,8 @@ class NavigatorUtil {
     Navigator.pushReplacement(
         _context!, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
+
+  static void jumpH5({required url, required title, required hideAppBar}) {
+
+  }
 }

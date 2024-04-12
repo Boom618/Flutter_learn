@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.1
   flutter_hi_cache: ^0.0.1
+  carousel_slider: ^4.2.1 # 轮播图
 
 dev_dependencies:
   flutter_test:
