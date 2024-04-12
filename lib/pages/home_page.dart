@@ -9,7 +9,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+/// AutomaticKeepAliveClientMixin 页面常驻内存
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   get _logoutBtn => ElevatedButton(
         onPressed: () => {LoginDao.logOut()},
         child: const Text("登出"),
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     NavigatorUtil.updateContext(context);
 
     return Scaffold(
@@ -26,4 +28,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  // 保持页面不销毁，常驻内存
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -7,7 +7,9 @@ import 'http/JsonParsingPage.dart';
 import 'http/future_study.dart';
 import 'http/http_study.dart';
 import 'http/shared_preferences_study.dart';
+import 'navigator/tab_navigator.dart';
 import 'pages/login_page.dart';
+import 'util/screen_adapter_helper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,13 +36,14 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder<dynamic>(
         future: HiCache.preInit(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
-          // ScreenHelper.init(context);// 初始化屏幕适配工具
+          ScreenHelper.init(context);// 初始化屏幕适配工具
           if (snapshot.connectionState == ConnectionState.done) {
             if (LoginDao.getBoardingPass() == null) {
-              return const LoginPage();
+              // return const LoginPage();
+              return const TabNavigator();
             } else {
-              //return const TabNavigator();
-              return const HomePage();
+              return const TabNavigator();
+              // return const HomePage();
             }
           } else {
             return const Scaffold(
