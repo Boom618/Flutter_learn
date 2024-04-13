@@ -55,7 +55,7 @@ class _BannerWidgetState extends State<BannerWidget> {
             url: model.url, title: model.title, hideAppBar: model.hideAppBar);
       },
       child: Image.network(
-        "http://inews.gtimg.com/newsapp_bt/0/14268490256/641",//model.icon!,
+        model.icon!,
         width: width,
         fit: BoxFit.cover,
       ),

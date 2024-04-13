@@ -32,10 +32,10 @@ class _TabNavigatorState extends State<TabNavigator> {
         controller: _controller,
         // physics: const NeverScrollableScrollPhysics(),
         children: const [
-          // HomePage(),
+          HomePage(),
           // ExpansionTilePage(),
           // GridViewPage(),
-          RefreshLoadMorePage(),
+          // RefreshLoadMorePage(),
           SearchPage(),
           TravelPage(),
           MyPage()

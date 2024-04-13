@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:started_flutter/dao/home_dao.dart';
 import 'package:started_flutter/dao/login_dao.dart';
 import 'package:started_flutter/util/navigator_util.dart';
 
@@ -6,6 +7,9 @@ import '../model/home_model.dart';
 import '../widget/banner_widget.dart';
 
 class HomePage extends StatefulWidget {
+
+  static Config? configModel;
+
   const HomePage({super.key});
 
   @override
@@ -15,16 +19,14 @@ class HomePage extends StatefulWidget {
 /// AutomaticKeepAliveClientMixin 页面常驻内存
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
-
   // 滚动距离
   static const appbarScrollOffset = 100;
 
-  List<CommonModel> bannerList = [
-    CommonModel(),
-    CommonModel(),
-    CommonModel(),
-    CommonModel()
-  ];
+  List<CommonModel> localNavList = [];
+  List<CommonModel> bannerList = [];
+  List<CommonModel> subNavList = [];
+  GridNav? gridNavModel;
+  SalesBox? salesBoxModel;
 
   /// bar 透明度
   double appBarAlpha = 0;
@@ -59,6 +61,7 @@ class _HomePageState extends State<HomePage>
         children: [
           BannerWidget(bannerList: bannerList),
           _logoutBtn,
+          Text(gridNavModel?.flight?.item1?.title ?? "---"),
           const SizedBox(
             height: 1000,
             child: ListTile(
@@ -92,7 +95,8 @@ class _HomePageState extends State<HomePage>
                 child: _listView,
                 onNotification: (scrollNotification) {
                   if (scrollNotification is ScrollUpdateNotification &&
-                      scrollNotification.depth == 0) { // 深度为 0 时，即 ListView 滚动
+                      scrollNotification.depth == 0) {
+                    // 深度为 0 时，即 ListView 滚动
                     // scrollNotification.metrics.pixels 获取滚动距离
                     _onScroll(scrollNotification.metrics.pixels);
                   }
@@ -110,8 +114,29 @@ class _HomePageState extends State<HomePage>
   @override
   bool get wantKeepAlive => true;
 
-  /// 轮播图
-  _handleRefresh() {}
+  var bodString = "";
+
+  ///  拉取首页接口数据
+  Future<void> _handleRefresh() async {
+    try {
+      HomeModel model = await HomeDao.featch();
+      setState(() {
+        HomePage.configModel = model.config;
+
+        localNavList = model.localNavList ?? [];
+        subNavList = model.subNavList ?? [];
+        gridNavModel = model.gridNav;
+        salesBoxModel = model.salesBox;
+        bannerList = model.bannerList ?? [];
+        //_loading = false;
+      });
+    } catch (e) {
+      debugPrint(e.toString());
+      setState(() {
+        bodString = e.toString();
+      });
+    }
+  }
 
   void _onScroll(double pixels) {
     print("pixels = $pixels");
@@ -119,7 +144,7 @@ class _HomePageState extends State<HomePage>
 
     if (alpha < 0) {
       alpha = 0;
-    }else if(alpha >1){
+    } else if (alpha > 1) {
       alpha = 1;
     }
     setState(() {
