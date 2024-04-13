@@ -22,12 +22,12 @@ samples, guidance on mobile development, and a full API reference.
 
 ## 常见 Widget
 
-布局 Widget
-文本 Widget
-可滚动的 Widget
-绘制和裁切 Widget
-图片和资产 Widget
-样式 Widget
+- 布局 Widget
+- 文本 Widget
+- 可滚动的 Widget
+- 绘制和裁切 Widget
+- 图片和资产 Widget
+- 样式 Widget
 
 ## 插件
 

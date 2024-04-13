@@ -5,6 +5,7 @@ import 'package:started_flutter/util/navigator_util.dart';
 
 import '../model/home_model.dart';
 import '../widget/banner_widget.dart';
+import '../widget/local_nav_widget.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -60,6 +61,7 @@ class _HomePageState extends State<HomePage>
   get _listView => ListView(
         children: [
           BannerWidget(bannerList: bannerList),
+          LocalNavWidget(localNavList: localNavList),
           _logoutBtn,
           Text(gridNavModel?.flight?.item1?.title ?? "---"),
           const SizedBox(
