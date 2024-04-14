@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:started_flutter/dao/home_dao.dart';
 import 'package:started_flutter/dao/login_dao.dart';
 import 'package:started_flutter/util/navigator_util.dart';
+import 'package:started_flutter/widget/loading_container.dart';
 
 import '../model/home_model.dart';
 import '../widget/banner_widget.dart';
 import '../widget/local_nav_widget.dart';
 
 class HomePage extends StatefulWidget {
-
   static Config? configModel;
 
   const HomePage({super.key});
@@ -29,6 +29,8 @@ class _HomePageState extends State<HomePage>
   GridNav? gridNavModel;
   SalesBox? salesBoxModel;
 
+  bool _isLoading = true;
+
   /// bar 透明度
   double appBarAlpha = 0;
 
@@ -42,6 +44,7 @@ class _HomePageState extends State<HomePage>
   get _appBar => Opacity(
         opacity: appBarAlpha,
         child: Container(
+          padding: EdgeInsets.only(top: 20), // 适配手机 top 
           height: 80,
 
           /// BoxDecoration 装饰器
@@ -73,6 +76,29 @@ class _HomePageState extends State<HomePage>
         ],
       );
 
+  get _contentView => MediaQuery.removePadding(
+      removeTop: true,
+      context: context,
+      // RefreshIndicator 监听刷新
+      child: RefreshIndicator(
+        color: Colors.blue,
+        onRefresh: _handleRefresh,
+        // NotificationListener 监听滚动状态
+        child: NotificationListener(
+          child: _listView,
+          onNotification: (scrollNotification) {
+            if (scrollNotification is ScrollUpdateNotification &&
+                scrollNotification.depth == 0) {
+              // 深度为 0 时，即 ListView 滚动
+              // scrollNotification.metrics.pixels 获取滚动距离
+              _onScroll(scrollNotification.metrics.pixels);
+            }
+            // 只监听，不消费事件
+            return false;
+          },
+        ),
+      ));
+
   //
   @override
   void initState() {
@@ -86,29 +112,15 @@ class _HomePageState extends State<HomePage>
     NavigatorUtil.updateContext(context);
 
     return Scaffold(
-      body: Stack(
-        children: [
-          // MediaQuery.removePadding 移除 控件 padding
-          MediaQuery.removePadding(
-              removeTop: true,
-              context: context,
-              // NotificationListener 监听滚动状态
-              child: NotificationListener(
-                child: _listView,
-                onNotification: (scrollNotification) {
-                  if (scrollNotification is ScrollUpdateNotification &&
-                      scrollNotification.depth == 0) {
-                    // 深度为 0 时，即 ListView 滚动
-                    // scrollNotification.metrics.pixels 获取滚动距离
-                    _onScroll(scrollNotification.metrics.pixels);
-                  }
-                  // 只监听，不消费事件
-                  return false;
-                },
-              )),
-          _appBar,
-        ],
-      ),
+      body: LoadingContainer(
+          child: Stack(
+            children: [
+              // MediaQuery.removePadding 移除 控件 padding
+              _contentView,
+              _appBar,
+            ],
+          ),
+          isLoading: _isLoading),
     );
   }
 
@@ -130,12 +142,13 @@ class _HomePageState extends State<HomePage>
         gridNavModel = model.gridNav;
         salesBoxModel = model.salesBox;
         bannerList = model.bannerList ?? [];
-        //_loading = false;
+        _isLoading = false;
       });
     } catch (e) {
       debugPrint(e.toString());
       setState(() {
         bodString = e.toString();
+        _isLoading = false;
       });
     }
   }

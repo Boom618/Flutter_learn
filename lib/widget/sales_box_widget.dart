@@ -30,14 +30,18 @@ class SalesBoxWidget extends StatelessWidget {
 
     return Column(
       children: [
+        _titleItem(),// 更多活动
+        // 大卡片
         Row(
           mainAxisAlignment: MainAxisAlignment.center, // 居中显示
           children: items.sublist(0, 1),
         ),
+        // 中间小卡片
         Row(
           mainAxisAlignment: MainAxisAlignment.center, // 居中显示
           children: items.sublist(1, 2),
         ),
+        // 第三列小卡片
         Row(
           mainAxisAlignment: MainAxisAlignment.center, // 居中显示
           children: items.sublist(2, 3),
@@ -78,6 +82,50 @@ class SalesBoxWidget extends StatelessWidget {
         ),
         child: Image.network(salesBox.icon!,
             fit: BoxFit.fill, width: mWidth, height: big ? 136 : 80),
+      ),
+    );
+  }
+
+  /// 活动 Item
+  _titleItem() {
+    return Container(
+      height: 45,
+      margin: EdgeInsets.only(left: 10),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(width: 1, color: Color(0xfff2f2f2))),
+      ),
+      child: Row(
+        // 对其方式
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // fit: BoxFit.fill 填充方式
+          Image.network(salesBox.icon!, width: 15, fit: BoxFit.fill),
+          _moreItem()
+        ],
+      ),
+    );
+  }
+
+  // 更多活动
+  _moreItem() {
+    return Container(
+      padding: EdgeInsets.fromLTRB(10, 1, 8, 1),
+      margin: EdgeInsets.only(right: 7),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        gradient: const LinearGradient(
+            colors: [Color(0xffff4e63), Color(0xffff6cc9)],
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight),
+      ),
+      child: GestureDetector(
+        onTap: () {
+          // todo h5
+        },
+        child: const Text(
+          "获取更多福利 >",
+          style: TextStyle(fontSize: 12, color: Colors.white),
+        ),
       ),
     );
   }
