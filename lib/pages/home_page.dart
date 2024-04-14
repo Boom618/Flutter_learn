@@ -8,6 +8,7 @@ import 'package:started_flutter/widget/loading_container.dart';
 import '../model/home_model.dart';
 import '../widget/banner_widget.dart';
 import '../widget/local_nav_widget.dart';
+import '../widget/sub_nav_widget.dart';
 
 class HomePage extends StatefulWidget {
   static Config? configModel;
@@ -68,6 +69,7 @@ class _HomePageState extends State<HomePage>
           LocalNavWidget(localNavList: localNavList),
           // 网格布局
           if(gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
+          SubNavWidget(suNavList: subNavList),
           _logoutBtn,
           Text(gridNavModel?.flight?.item1?.title ?? "---"),
           const SizedBox(
