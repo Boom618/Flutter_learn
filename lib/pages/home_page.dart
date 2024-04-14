@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:started_flutter/dao/home_dao.dart';
 import 'package:started_flutter/dao/login_dao.dart';
 import 'package:started_flutter/util/navigator_util.dart';
+import 'package:started_flutter/widget/grid_nav_widget.dart';
 import 'package:started_flutter/widget/loading_container.dart';
 
 import '../model/home_model.dart';
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage>
   get _appBar => Opacity(
         opacity: appBarAlpha,
         child: Container(
-          padding: EdgeInsets.only(top: 20), // 适配手机 top 
+          padding: EdgeInsets.only(top: 20), // 适配手机 top
           height: 80,
 
           /// BoxDecoration 装饰器
@@ -65,6 +66,8 @@ class _HomePageState extends State<HomePage>
         children: [
           BannerWidget(bannerList: bannerList),
           LocalNavWidget(localNavList: localNavList),
+          // 网格布局
+          if(gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
           _logoutBtn,
           Text(gridNavModel?.flight?.item1?.title ?? "---"),
           const SizedBox(
