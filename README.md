@@ -40,3 +40,4 @@ samples, guidance on mobile development, and a full API reference.
 - RefreshIndicator 实现下拉刷新
 - PhysicalModel ，裁切组件，主要的功能就是设置 widget四边圆角
 - Expanded 它可以动态调整 child 组件沿主轴的尺寸
+- Opacity：它的作用是给子组件添加一个透明度的属性

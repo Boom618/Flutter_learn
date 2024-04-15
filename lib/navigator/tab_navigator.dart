@@ -36,7 +36,7 @@ class _TabNavigatorState extends State<TabNavigator> {
           // ExpansionTilePage(),
           // GridViewPage(),
           // RefreshLoadMorePage(),
-          SearchPage(),
+          SearchPage(hideLeft: true,),
           TravelPage(),
           MyPage()
         ],

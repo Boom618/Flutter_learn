@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:started_flutter/pages/home_page.dart';
 
 import '../pages/login_page.dart';
@@ -12,6 +13,16 @@ class NavigatorUtil {
   static updateContext(BuildContext context) {
     NavigatorUtil._context = context;
     print('init:$context');
+  }
+
+  ///返回上一页
+  static pop(BuildContext context) {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    } else {
+      //退出APP
+      SystemNavigator.pop();
+    }
   }
 
   // 跳转到指定页

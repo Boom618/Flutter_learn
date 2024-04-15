@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 enum SearchBarType { home, homeLight, normal }
 
 class SearchBarWidget extends StatefulWidget {
-  final bool hideLeft; // 左侧返回
+  final bool? hideLeft; // 左侧返回
 
   ///搜索框类型
   final SearchBarType searchBarType;
@@ -110,12 +110,14 @@ class _SearchBarWidgetState extends State<SearchBarWidget> {
           controller: _controller,
           onChanged: _onChanged,
           autofocus: true,
+          cursorColor: Colors.red,
+          cursorHeight: 20,
           // 自动获取焦点
           style: const TextStyle(
               color: Colors.black, fontSize: 18, fontWeight: FontWeight.w300),
           // 输入框文本样式
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.fromLTRB(5, 0, 5, 15),
+            contentPadding: const EdgeInsets.fromLTRB(5, 0, 5, 18),
             border: InputBorder.none, // 去除输入框
             hintText: widget.hint,
             hintStyle: const TextStyle(fontSize: 15),

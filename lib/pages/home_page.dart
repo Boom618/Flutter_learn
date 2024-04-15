@@ -4,11 +4,16 @@ import 'package:started_flutter/dao/login_dao.dart';
 import 'package:started_flutter/util/navigator_util.dart';
 import 'package:started_flutter/widget/grid_nav_widget.dart';
 import 'package:started_flutter/widget/loading_container.dart';
+import 'package:started_flutter/widget/search_bar_widget.dart';
 
 import '../model/home_model.dart';
+import '../util/view_util.dart';
 import '../widget/banner_widget.dart';
 import '../widget/local_nav_widget.dart';
 import '../widget/sub_nav_widget.dart';
+import 'search_page.dart';
+
+const searchBarDefaultText = '网红打开地 景点 酒店 美食';
 
 class HomePage extends StatefulWidget {
   static Config? configModel;
@@ -43,32 +48,46 @@ class _HomePageState extends State<HomePage>
 
   /// Opacity：它的作用是给子组件添加一个透明度的属性
   /// Container：容器,它可以容纳其它的 widget.
-  get _appBar => Opacity(
-        opacity: appBarAlpha,
-        child: Container(
-          padding: EdgeInsets.only(top: 20), // 适配手机 top
-          height: 80,
-
-          /// BoxDecoration 装饰器
-          decoration: const BoxDecoration(color: Colors.green),
-
-          /// Center Center 继承自Align，只不过是将alignment设置为Alignment.center
-          child: const Center(
-            // Padding  的类型为 EdgeInsetsGeometry 基本上需要间距的地方，它都能够使用
-            child: Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Text("首页"),
+  get _appBar {
+    // 计算安全边界 适配刘海屏
+    double top = MediaQuery.of(context).padding.top;
+    return Column(
+      children: [
+        shadowWarp(
+          child: Container(
+            height: 60 + top, // 搜索框 + top
+            padding: EdgeInsets.only(top: top),
+            decoration: BoxDecoration(
+              color: Color.fromARGB((appBarAlpha * 255).toInt(), 255, 255, 255),
+            ),
+            child: SearchBarWidget(
+              searchBarType: appBarAlpha > 0.2
+                  ? SearchBarType.homeLight
+                  : SearchBarType.home,
+              inputBoxClick: _jumpToSearch, // 点击输入框 event
+              defaultText: searchBarDefaultText,
+              rightButtonClick: () {
+                LoginDao.logOut();
+              },
             ),
           ),
         ),
-      );
+        // 底部线
+        Container(
+          height: appBarAlpha > 0.2 ? 0.5 : 0,
+          decoration: const BoxDecoration(
+              boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 0.5)]),
+        )
+      ],
+    );
+  }
 
   get _listView => ListView(
         children: [
           BannerWidget(bannerList: bannerList),
           LocalNavWidget(localNavList: localNavList),
           // 网格布局
-          if(gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
+          if (gridNavModel != null) GridNavWidget(gridNavModel: gridNavModel!),
           SubNavWidget(suNavList: subNavList),
           _logoutBtn,
           Text(gridNavModel?.flight?.item1?.title ?? "---"),
@@ -170,5 +189,9 @@ class _HomePageState extends State<HomePage>
     setState(() {
       appBarAlpha = alpha;
     });
+  }
+
+  void _jumpToSearch() {
+    NavigatorUtil.push(context, const SearchPage());
   }
 }
