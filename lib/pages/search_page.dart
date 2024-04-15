@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widget/search_bar_widget.dart';
+
 /// 搜索页面
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -15,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: const Text("搜索"),
       ),
-      body: Text("搜索"),
+      body: SearchBarWidget(),
     );
   }
 }
