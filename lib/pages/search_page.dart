@@ -14,10 +14,17 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey,
       appBar: AppBar(
         title: const Text("搜索"),
       ),
-      body: SearchBarWidget(),
+      body: Column(
+        children: [
+          SearchBarWidget(searchBarType: SearchBarType.normal),
+          SearchBarWidget(searchBarType: SearchBarType.home),
+          SearchBarWidget(searchBarType: SearchBarType.homeLight),
+        ],
+      ),
     );
   }
 }
