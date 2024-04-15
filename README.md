@@ -41,3 +41,8 @@ samples, guidance on mobile development, and a full API reference.
 - PhysicalModel ，裁切组件，主要的功能就是设置 widget四边圆角
 - Expanded 它可以动态调整 child 组件沿主轴的尺寸
 - Opacity：它的作用是给子组件添加一个透明度的属性
+- SizedBox ：它可以给子组件添加一个固定尺寸的属性
+- Container ：通用的布局组件，可以设置背景颜色、边框、圆角等
+- RichText ：富文本
+- TextField：输入框
+- BoxDecoration ：装饰器可以给 Container 添加背景图片、边框、圆角、渐变等
