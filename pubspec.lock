@@ -349,6 +349,14 @@ packages:
       url: "https://mirrors.cloud.tencent.com/dart-pub/"
     source: hosted
     version: "1.3.2"
+  underline_indicator:
+    dependency: "direct main"
+    description:
+      name: underline_indicator
+      sha256: "2f721b87edaf66ff3f5329ba93cf5e3d21b454b1b6516748890e0657cc305c9f"
+      url: "https://mirrors.cloud.tencent.com/dart-pub/"
+    source: hosted
+    version: "0.0.4"
   url_launcher:
     dependency: "direct main"
     description:

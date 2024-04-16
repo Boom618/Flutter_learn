@@ -37,9 +37,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^1.2.1
   shared_preferences: ^2.2.2
-  url_launcher: ^6.2.1
-  flutter_hi_cache: ^0.0.1
+  url_launcher: ^6.2.1 # 打开浏览器
+  flutter_hi_cache: ^0.0.1 # 缓存
   carousel_slider: ^4.2.1 # 轮播图
+  underline_indicator: ^0.0.4 # 指示器
 
 dev_dependencies:
   flutter_test:
