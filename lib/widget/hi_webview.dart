@@ -3,7 +3,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 import '../util/navigator_util.dart';
 
-/// H5 容器
+///H5容器
 class HiWebView extends StatefulWidget {
   final String? url;
   final String? statusBarColor;
@@ -15,11 +15,11 @@ class HiWebView extends StatefulWidget {
 
   const HiWebView(
       {super.key,
-      this.url,
-      this.statusBarColor,
-      this.title,
-      this.hideAppBar,
-      this.backForbid});
+        this.url,
+        this.statusBarColor,
+        this.title,
+        this.hideAppBar,
+        this.backForbid});
 
   @override
   State<HiWebView> createState() => _HiWebViewState();
@@ -33,7 +33,6 @@ class _HiWebViewState extends State<HiWebView> {
     'm.ctrip.com/html5'
   ];
   String? url;
-
   late WebViewController controller;
 
   @override
@@ -50,22 +49,35 @@ class _HiWebViewState extends State<HiWebView> {
   @override
   Widget build(BuildContext context) {
     String statusBarColorStr = widget.statusBarColor ?? 'ffffff';
-
     Color backButtonColor;
     if (statusBarColorStr == 'ffffff') {
       backButtonColor = Colors.black;
     } else {
       backButtonColor = Colors.white;
     }
-
-    return Scaffold(
-      body: Column(
-        children: [
-          _appBar(Color(int.parse('0xff$statusBarColorStr')), backButtonColor),
-          Expanded(child: WebViewWidget(controller: controller))
-        ],
-      ),
-    );
+    //处理Android物理返回键，返回H5的上一页 https://docs.flutter.dev/release/breaking-changes/android-predictive-back
+    return PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) async {
+          if (await controller.canGoBack()) {
+            //返回H5的上一页
+            controller.goBack();
+          } else {
+            if (context.mounted) NavigatorUtil.pop(context);
+          }
+        },
+        child: Scaffold(
+          body: Column(
+            children: [
+              _appBar(
+                  Color(int.parse('0xff$statusBarColorStr')), backButtonColor),
+              Expanded(
+                  child: WebViewWidget(
+                    controller: controller,
+                  ))
+            ],
+          ),
+        ));
   }
 
   void _initWebViewController() {
@@ -74,7 +86,7 @@ class _HiWebViewState extends State<HiWebView> {
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(NavigationDelegate(
           onProgress: (int progress) {
-            debugPrint('progress = $progress');
+            debugPrint('progress:$progress');
           },
           onPageStarted: (String url) {},
           onPageFinished: (String url) {
@@ -82,7 +94,6 @@ class _HiWebViewState extends State<HiWebView> {
             _handleBackForbid();
           },
           onWebResourceError: (WebResourceError error) {},
-          // 监听 WebView 报错
           onNavigationRequest: (NavigationRequest request) {
             if (_isToMain(request.url)) {
               debugPrint('阻止跳转到 $request}');
@@ -96,8 +107,9 @@ class _HiWebViewState extends State<HiWebView> {
       ..loadRequest(Uri.parse(url!));
   }
 
-  /// 处理返回键
+  ///隐藏H5登录页的返回键
   void _handleBackForbid() {
+    // 找到 WebView 中的返回元素，（返回 icon）
     const jsStr =
         "var element = document.querySelector('.animationComponent.rn-view'); element.style.display = 'none';";
     if (widget.backForbid ?? false) {
@@ -105,7 +117,8 @@ class _HiWebViewState extends State<HiWebView> {
     }
   }
 
-  bool _isToMain(String url) {
+  ///判断H5是否返回主页
+  bool _isToMain(String? url) {
     bool contain = false;
     for (final value in _catchUrls) {
       if (url?.endsWith(value) ?? false) {

@@ -9,15 +9,19 @@ class MyPage extends StatefulWidget {
   State<MyPage> createState() => _MyPageState();
 }
 
-class _MyPageState extends State<MyPage> {
+class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("我的"),
+    return const Scaffold(
+      body: HiWebView(
+        url: 'https://m.ctrip.com/webapp/myctrip/',
+        hideAppBar: true,
+        backForbid: true,
+        statusBarColor: '4c5bca',
       ),
-      body: HiWebView(url: 'https://m.ctrip.com/webapp/myctrip/',hideAppBar: true,),
-
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -46,3 +46,5 @@ samples, guidance on mobile development, and a full API reference.
 - RichText ：富文本
 - TextField：输入框
 - BoxDecoration ：装饰器可以给 Container 添加背景图片、边框、圆角、渐变等
+- TickerProviderStateMixin 是 Flutter 中用于创建动画的类,通常与 AnimationController 一起使用
+- AutomaticKeepAliveClientMixin: 在规避页面被重建、防止数据丢失

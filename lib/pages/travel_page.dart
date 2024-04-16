@@ -14,6 +14,7 @@ class TravelPage extends StatefulWidget {
   State<TravelPage> createState() => _TravelPageState();
 }
 
+// TickerProviderStateMixin 是 Flutter 中用于创建动画的类,通常与 AnimationController 一起使用
 class _TravelPageState extends State<TravelPage> with TickerProviderStateMixin {
   List<TravelTab> tabs = [];
   TravelCategoryModel? travelTabModel;
