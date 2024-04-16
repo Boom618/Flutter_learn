@@ -1,6 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:started_flutter/widget/loading_container.dart';
+import 'package:started_flutter/widget/travel_item_widget.dart';
 
 import '../dao/travel_dao.dart';
 import '../model/travel_tab_model.dart';
@@ -15,16 +16,42 @@ class TravelTabPage extends StatefulWidget {
   State<StatefulWidget> createState() => _TravelTabPage();
 }
 
-class _TravelTabPage extends State<TravelTabPage> with AutomaticKeepAliveClientMixin {
+class _TravelTabPage extends State<TravelTabPage>
+    with AutomaticKeepAliveClientMixin {
+  // 保持页面，防止下次回来，重新加载数据
   List<TravelItem> travelItems = [];
   int pageIndex = 1;
   bool _loading = true;
 
+  // 跟 listView 的 Controller 一样，这里也需要一个 Controller
+  final ScrollController _scrollController = ScrollController();
+
+  get _gridViews => MasonryGridView.count(
+      crossAxisCount: 2,
+      controller: _scrollController,
+      itemCount: travelItems.length,
+      itemBuilder: (BuildContext context, int index) {
+        return TravelItemWidget(
+          item: travelItems[index],
+          index: index,
+        );
+      });
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
-      body: ListView(
-        children: [Text('groupChanneLCode: ${jsonEncode(travelItems)}')],
+      body: LoadingContainer(
+        isLoading: _loading,
+        child: RefreshIndicator(
+          onRefresh: _loadData,
+          color: Colors.blue,
+          child: MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: _gridViews,
+          ),
+        ),
       ),
     );
   }
@@ -32,6 +59,13 @@ class _TravelTabPage extends State<TravelTabPage> with AutomaticKeepAliveClientM
   @override
   void initState() {
     _loadData();
+    // 添加滚动监听
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        _loadData(loadMore: true);
+      }
+    });
     super.initState();
   }
 
@@ -80,4 +114,10 @@ class _TravelTabPage extends State<TravelTabPage> with AutomaticKeepAliveClientM
 
   @override
   bool get wantKeepAlive => true; // 常驻内存
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 }
