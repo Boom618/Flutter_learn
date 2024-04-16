@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:started_flutter/widget/hi_webview.dart';
 
 /// 我的页面
 class MyPage extends StatefulWidget {
@@ -15,7 +16,8 @@ class _MyPageState extends State<MyPage> {
       appBar: AppBar(
         title: const Text("我的"),
       ),
-      body: Text("我的"),
+      body: HiWebView(url: 'https://m.ctrip.com/webapp/myctrip/',hideAppBar: true,),
+
     );
   }
 }
