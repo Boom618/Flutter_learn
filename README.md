@@ -20,6 +20,61 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+> 第六课：
+- 屏幕适配
+
+> 第七课：
+- 基于PageView与BottomNavigationBar搭建首页导航框架
+- 封装的艺术之轮播图组件的实现
+- 基于Opacity 与 NotificationListener 实现AppBar 滚动渐变效果
+
+> 第八课：
+- 基于 ListView 实现水平和垂直方式滚动的列表
+- 基于 ExpansionTile 实现可展开的列表
+- 基于GridView实现网格列表
+- 高级功能列表下拉刷新与上拉加载更多功能实现
+
+> 第九课：
+- 首页网格布局
+
+
+> 第十课：
+- 自定义SearchBar结构框架实现
+- TextField输入框自定义样式扩展
+- 基于SearchBar实现首页AppBar
+- 基于ListView实现搜索列夫与实时搜索的优化
+- 动态Icon与富文本展示
+
+
+> 11 课：
+- 瀑布流
+- TabBar+TabBarView 实现旅拍可滑动切换多Tab
+
+> 12 课：
+- webview flutter 使用详解
+- H5容器widget封装
+- 基于H5容器实现H5混合开发
+- 基于H5容器实现我的页面
+- Fultter 与 H5 交互 :在 Web View 中利用 controller 动态执行 js 操作
+
+> 13 课；
+- Flutter 与 H5 通信的几种方式
+    - js 向 Flutter 传递数据:通过 URL 方式、通过 javaScriptChannels 方式
+    - Flutter 向 js 传递数据:通过 URL 方式、通过 runJavaScript 方式
+- Flutter 与 H5通讯原理
+- Flutter 与 H5 路由跳转
+
+类比 Android 原生交互
+```
+- Android 调用 JS：
+  - WebView 的 loadUrl
+  - WebView 的 evaluateJavascript
+- JS 调用 Android：
+  - WebView 的 addJavascriptInterface
+  - WebViewClient 的 shouldOverrideLoading 方法拦截 url
+```
+
+
 ## 常见 Widget
 
 - 布局 Widget
