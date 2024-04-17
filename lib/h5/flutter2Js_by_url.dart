@@ -18,10 +18,10 @@ class _Flutter2JsByUrlState extends State<Flutter2JsByUrl> {
 
   get _loadBtn => FilledButton(
       onPressed: () {
-        // 通过 URL 向 H5 传递数据
+        // Flutter 通过 URL 向 H5 传递数据
         controller.loadRequest(Uri.parse(url));
       },
-      child: Text(
+      child: const Text(
         '加载 H5',
         style: TextStyle(color: Colors.white),
       ));

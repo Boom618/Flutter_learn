@@ -34,7 +34,7 @@ class _Js2FlutterByUrlState extends State<Js2FlutterByUrl> {
 
   get _loadBtn => FilledButton(
       onPressed: () {
-        //FELoadHtmlString/#string#It#HTML
+        // H5 通过 URL 向 Flutter 传递数据
         webViewController.loadHtmlString(h5JS2FlutterByUrl);
       },
       child: const Text(
