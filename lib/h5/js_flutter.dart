@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:started_flutter/h5/js_flutter_by_url.dart';
 
 import '../navigator/tab_navigator.dart';
+import 'js_flutter_by_channel.dart';
 
 /// JS 与 Flutter 交互
 class JsFlutter extends StatelessWidget {
@@ -16,7 +17,7 @@ class JsFlutter extends StatelessWidget {
       body: Column(
         children: [
           _Navigation(context, Js2FlutterByUrl(), "Js 向Flutter 传递数据 通过 URL 方式"),
-          _Navigation(context, Js2FlutterByUrl(), "Js 向Flutter 传递数据 通过 URL 方式"),
+          _Navigation(context, Js2FlutterByChannel(), "Js 向Flutter 传递数据 通过 javascriptChannels 方式"),
           _Navigation(context, Js2FlutterByUrl(), "Js 向Flutter 传递数据 通过 URL 方式"),
           _Navigation(context, Js2FlutterByUrl(), "Js 向Flutter 传递数据 通过 URL 方式"),
           _Navigation(context, TabNavigator(), "项目登录页面"),
