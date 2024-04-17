@@ -35,7 +35,7 @@ class _Js2FlutterByChannelState extends State<Js2FlutterByChannel> {
   /// 按钮
   get _loadBtn => FilledButton(onPressed: (){
     controller.loadHtmlString(h5JS2FlutterByChannel);
-  }, child: Text('JS 向 Flutter 传递数据,通过 javascriptChannels 方式'));
+  }, child: Text('加载H5'));
 
   @override
   void initState() {
@@ -52,7 +52,7 @@ class _Js2FlutterByChannelState extends State<Js2FlutterByChannel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('加载 H5'),actions: [_loadBtn],),
+      appBar: AppBar(title: Text('JS 向 Flutter 传递数据- javascriptChannels '),actions: [_loadBtn],),
       body: WebViewWidget(controller: controller),
     );
   }
