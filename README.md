@@ -74,6 +74,20 @@ samples, guidance on mobile development, and a full API reference.
   - WebViewClient 的 shouldOverrideLoading 方法拦截 url
 ```
 
+> 14 课：
+- 开发Flutter包和插件
+- Flutter 包和插件的开发与发布
+
+> 15 课：
+- 启动白屏问题优化与启动屏制作
+- Flutter升级与适配指南
+- 编译和打出 Android 和 IOS 应用
+
+> 16 课：
+- GetX ：路由、状态管理、依赖注入
+- 使用Obx与Getx做状态管理
+- 使用GetBuilder做状态管理
+- 使用getx实现MVVM架构
 
 ## 常见 Widget
 

@@ -36,27 +36,7 @@ class MyApp extends StatelessWidget {
       // home: const FutureStudy(),
       // home: const SPCounterWidget(),
       // home: const LoginPage(),
-      home: FutureBuilder<dynamic>(
-        future: HiCache.preInit(),
-        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
-          ScreenHelper.init(context);// 初始化屏幕适配工具
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (LoginDao.getBoardingPass() == null) {
-              return const JsFlutter();
-              // return const TabNavigator();
-            } else {
-              return const TabNavigator();
-              // return const HomePage();
-            }
-          } else {
-            return const Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-        }
-      ),
+      // todo 工程改造,
     );
   }
 }

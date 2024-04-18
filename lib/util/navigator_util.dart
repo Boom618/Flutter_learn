@@ -41,7 +41,8 @@ class NavigatorUtil {
   static pushHome(BuildContext context) {
     // 跳转到首页 不让返回
     // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TabNavigator()));
-    Get.offAll(const TabNavigator()); // 关闭所有页面，跳转
+    // Get.offAll(const TabNavigator()); // 关闭所有页面，跳转
+    // todo 跳转首页
   }
 
   // 跳转到登录页
@@ -56,29 +57,6 @@ class NavigatorUtil {
     String? title,
     bool? hideAppBar,
     String? statusBarColor}) {
-    //   BuildContext? safeContext;
-    //   if (url == null) {
-    //     debugPrint('url is null jumpH5 failed.');
-    //     return;
-    //   }
-    //   if (context != null) {
-    //     safeContext = context;
-    //   } else if (_context?.mounted ?? false) {
-    //     safeContext = _context;
-    //   } else {
-    //     debugPrint('context is null jumpH5 failed.');
-    //     return;
-    //   }
-    //   Navigator.push(
-    //       safeContext!,
-    //       MaterialPageRoute(
-    //           builder: (context) => HiWebView(
-    //             url: url,
-    //             title: title,
-    //             hideAppBar: hideAppBar,
-    //             statusBarColor: statusBarColor,
-    //           )));
-    // }
     Get.to(HiWebView(
       url: url,
       title: title,
