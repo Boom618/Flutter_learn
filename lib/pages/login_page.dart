@@ -108,8 +108,8 @@ class _LoginPageState extends State<LoginPage> {
   // 登录逻辑
   _login() async {
     try {
-      var result = LoginDao.login(userName: username!, password: password!);
-      print(result);
+      //var result = await LoginDao.login(userName: username!, password: password!);
+      // print(result);
       NavigatorUtil.pushHome(context);
     } catch (e) {
       print(e);

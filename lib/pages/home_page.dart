@@ -137,14 +137,14 @@ class _HomePageState extends State<HomePage>
 
     return Scaffold(
       body: LoadingContainer(
+          isLoading: _isLoading,
           child: Stack(
             children: [
               // MediaQuery.removePadding 移除 控件 padding
               _contentView,
               _appBar,
             ],
-          ),
-          isLoading: _isLoading),
+          )),
     );
   }
 
