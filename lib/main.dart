@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hi_cache/flutter_hi_cache.dart';
 import 'package:get/get.dart';
+import 'package:started_flutter/mvvm/binding/inital_binding.dart';
+import 'package:started_flutter/mvvm/routes/app_pages.dart';
 import 'package:started_flutter/pages/home_page.dart';
 
 import 'dao/login_dao.dart';
@@ -36,7 +38,9 @@ class MyApp extends StatelessWidget {
       // home: const FutureStudy(),
       // home: const SPCounterWidget(),
       // home: const LoginPage(),
-      // todo 工程改造,
+      initialRoute: AppPages.init,
+      initialBinding: InitialBinding(),
+      getPages: AppPages.routes,
     );
   }
 }

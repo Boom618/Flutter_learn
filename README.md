@@ -88,6 +88,7 @@ samples, guidance on mobile development, and a full API reference.
 - 使用Obx与Getx做状态管理
 - 使用GetBuilder做状态管理
 - 使用getx实现MVVM架构
+- GetX 的 Binding 注入管理（这点跟 Android 的 Koin 依赖注入十分相识）
 
 ## 常见 Widget
 

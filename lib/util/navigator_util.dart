@@ -4,6 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:started_flutter/navigator/tab_navigator.dart';
 import 'package:started_flutter/pages/home_page.dart';
 
+import '../mvvm/routes/app_pages.dart';
 import '../pages/login_page.dart';
 import '../widget/hi_webview.dart';
 
@@ -42,7 +43,8 @@ class NavigatorUtil {
     // 跳转到首页 不让返回
     // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TabNavigator()));
     // Get.offAll(const TabNavigator()); // 关闭所有页面，跳转
-    // todo 跳转首页
+    // 当使用 GetX 依赖注入时，需要使用路由名称跳转，才能确保依赖注入正常使用，切换页面的时候不丢是 controller
+    Get.offAllNamed(Routes.MAIN);
   }
 
   // 跳转到登录页
