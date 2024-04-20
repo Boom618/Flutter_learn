@@ -13,7 +13,7 @@ import 'http/future_study.dart';
 import 'http/http_study.dart';
 import 'http/shared_preferences_study.dart';
 import 'navigator/tab_navigator.dart';
-import 'pages/login_page.dart';
+import 'mvvm/login/views/login_page.dart';
 import 'util/screen_adapter_helper.dart';
 
 void main() {

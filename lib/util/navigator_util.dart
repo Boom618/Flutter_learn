@@ -5,7 +5,7 @@ import 'package:started_flutter/navigator/tab_navigator.dart';
 import 'package:started_flutter/pages/home_page.dart';
 
 import '../mvvm/routes/app_pages.dart';
-import '../pages/login_page.dart';
+import '../mvvm/login/views/login_page.dart';
 import '../widget/hi_webview.dart';
 
 /// 导航
@@ -39,7 +39,7 @@ class NavigatorUtil {
   }
 
   // 跳转到首页
-  static pushHome(BuildContext context) {
+  static pushHome() {
     // 跳转到首页 不让返回
     // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const TabNavigator()));
     // Get.offAll(const TabNavigator()); // 关闭所有页面，跳转
@@ -50,7 +50,8 @@ class NavigatorUtil {
   // 跳转到登录页
   static pushLogin() {
     // Navigator.pushReplacement(_context!, MaterialPageRoute(builder: (context) => const LoginPage()));
-    Get.off(const LoginPage()); // 关闭当前页面，跳转
+    // Get.off(const LoginPage()); // 关闭当前页面，跳转
+    Get.offAllNamed(Routes.LOGING);
   }
 
   ///跳转H5页面

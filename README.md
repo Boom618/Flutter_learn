@@ -90,6 +90,11 @@ samples, guidance on mobile development, and a full API reference.
 - 使用getx实现MVVM架构
 - GetX 的 Binding 注入管理（这点跟 Android 的 Koin 依赖注入十分相识）
 
+> MVVM 架构
+- 实现 ViewModel: `extends GetxController` 的类，跟 `Android`的 `ViewModel` 十分相似
+- 实现 view：`extends StatefulWidget` 改成 `extends GetView<LoginViewModel>`
+- 实现 Binding 依赖管理：`extends Bindings` ，由 `Get.lazyPut` 加载 `LoginViewModel`
+
 ## 常见 Widget
 
 - 布局 Widget
